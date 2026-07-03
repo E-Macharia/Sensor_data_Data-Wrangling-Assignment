@@ -9,8 +9,6 @@ This repository contains a complete Python Jupyter Notebook showing the ingestio
 * **`pressure_comparison.png`**: The final output visualization comparing the raw and cleaned pressure trends over time.
 * **`Week2_Insight_Report_Inuka.pdf`**: Associated insight report summarizing the workflow and analytical findings.
 
----
-
 ## 1. Data Health Report
 
 An initial profiling of the raw operational data (`ops_sensor_log_dirty.csv`) revealed several critical data quality issues:
@@ -26,8 +24,6 @@ An initial profiling of the raw operational data (`ops_sensor_log_dirty.csv`) re
 4. **Duplicates & Date Typos:**
    * **Duplicates:** There are $15$ exact duplicate rows representing redundant logs.
    * **Date Typo:** A single timestamp typo (`2026-01-07 09:10:00`) lies six months before the rest of the logs (which run from June 25 to July 1, 2026). This is a date typo where the month and day were swapped (it should be July 1st, `2026-07-01`).
-
----
 
 ## 2. Data Cleaning Pipeline
 
@@ -46,14 +42,10 @@ The reusable cleaning function `clean_ops_data(df)` processes the raw dataset th
   * Filters out physically impossible readings outside plausible ranges (Pressure: $[100, 300]$ PSI, Temperature: $[40, 90]$ °C, Flow Rate: $[500, 1500]$ LPM) by setting them to `NaN`.
   * **Interpolation Strategy:** Missing values (both original and outlier-induced) are filled using **linear interpolation grouped by `Zone`** to preserve the specific baseline and operating profile of each zone. Forward-fill (`ffill()`) and backward-fill (`bfill()`) are applied to handle boundary values.
 
----
-
 ## 3. Time-Series Analysis
 
 The cleaned dataset is resampled to an **hourly frequency** by calculating the mean of all sensor metrics within each hour.
 To identify operational trends and smooth out short-term fluctuations, a **24-hour rolling average** is computed for the primary metric (`Pressure_PSI`).
-
----
 
 ## 4. Aggregated Statistics Summary
 
@@ -77,15 +69,11 @@ The table below shows the aggregated Mean, Max, and Min values for each sensor m
 |                     | Zone_South   |       196.66       |       279.72       |       121.29       |      64.88      |     84.93     |     45.23     |       1002.54       |       1399.40       |       600.27       |
 |                     | Zone_West    |       192.42       |       277.87       |       120.29       |      64.30      |     84.81     |     45.05     |       1010.76       |       1399.38       |       609.68       |
 
----
-
 ## 5. Visualization
 
 The plot below compares the raw operational data with the cleaned pressure trend over time. Due to the massive differences between standard operating values and raw spikes (up to $15,000$ PSI), a log scale is used on the Y-axis to clearly show both the outliers and the stabilized process range:
 
 ![Pressure Trend Comparison](pressure_comparison.png)
-
----
 
 ## 6. How to Run
 
