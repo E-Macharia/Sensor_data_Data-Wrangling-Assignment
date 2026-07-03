@@ -1,4 +1,4 @@
-# Industrial Sensor Log: Data Wrangling & Time-Series Analysis
+# Sensor Log Data Wrangling & Time-Series Analysis
 
 This repository contains a complete Python Jupyter Notebook showing the ingestion, profiling, cleaning, analysis, and visualization of a week of operational data from a fictional processing plant. The dataset (`ops_sensor_log_dirty.csv`) simulates raw sensor logs containing structural inconsistencies, missing values, duplicates, and extreme sensor outliers.
 
@@ -50,7 +50,7 @@ The reusable cleaning function `clean_ops_data(df)` processes the raw dataset th
 
 ## 3. Time-Series Analysis
 
-The cleaned dataset is resampled to an **hourly frequency** by calculating the mean of all sensor metrics within each hour. 
+The cleaned dataset is resampled to an **hourly frequency** by calculating the mean of all sensor metrics within each hour.
 To identify operational trends and smooth out short-term fluctuations, a **24-hour rolling average** is computed for the primary metric (`Pressure_PSI`).
 
 ---
@@ -59,23 +59,23 @@ To identify operational trends and smooth out short-term fluctuations, a **24-ho
 
 The table below shows the aggregated Mean, Max, and Min values for each sensor metric grouped by **`Shift`** and **`Zone`**:
 
-| Shift | Zone | Pressure (PSI) Mean | Pressure (PSI) Max | Pressure (PSI) Min | Temp (°C) Mean | Temp (°C) Max | Temp (°C) Min | Flow Rate (LPM) Mean | Flow Rate (LPM) Max | Flow Rate (LPM) Min |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Afternoon** | Zone_Central | 198.98 | 279.94 | 120.22 | 65.34 | 84.83 | 45.00 | 1021.07 | 1399.59 | 603.22 |
-| | Zone_East | 203.74 | 279.89 | 121.25 | 64.95 | 84.99 | 45.08 | 997.97 | 1398.68 | 603.70 |
-| | Zone_North | 201.21 | 278.92 | 120.03 | 64.48 | 84.89 | 45.14 | 994.38 | 1399.61 | 601.09 |
-| | Zone_South | 201.08 | 279.72 | 120.22 | 65.12 | 84.99 | 45.05 | 991.43 | 1396.22 | 601.28 |
-| | Zone_West | 199.05 | 279.61 | 120.35 | 65.02 | 84.77 | 45.07 | 1011.03 | 1397.89 | 608.80 |
-| **Morning** | Zone_Central | 201.94 | 279.67 | 120.17 | 65.86 | 84.67 | 45.40 | 1005.77 | 1399.15 | 600.82 |
-| | Zone_East | 199.25 | 279.95 | 120.16 | 64.69 | 84.75 | 45.56 | 984.88 | 1398.44 | 602.63 |
-| | Zone_North | 202.48 | 279.85 | 121.29 | 65.87 | 84.67 | 45.24 | 1002.42 | 1393.85 | 601.80 |
-| | Zone_South | 202.05 | 279.43 | 120.25 | 65.55 | 84.84 | 45.01 | 980.12 | 1392.80 | 603.17 |
-| | Zone_West | 199.59 | 279.90 | 120.25 | 63.78 | 84.38 | 45.01 | 987.01 | 1399.76 | 600.23 |
-| **Night** | Zone_Central | 198.81 | 279.92 | 120.43 | 64.76 | 84.77 | 45.05 | 1000.69 | 1395.04 | 600.69 |
-| | Zone_East | 201.40 | 278.98 | 120.86 | 65.69 | 84.80 | 45.15 | 1001.89 | 1394.97 | 601.61 |
-| | Zone_North | 203.07 | 279.96 | 120.70 | 64.03 | 85.00 | 45.03 | 1008.68 | 1398.37 | 600.01 |
-| | Zone_South | 196.66 | 279.72 | 121.29 | 64.88 | 84.93 | 45.23 | 1002.54 | 1399.40 | 600.27 |
-| | Zone_West | 192.42 | 277.87 | 120.29 | 64.30 | 84.81 | 45.05 | 1010.76 | 1399.38 | 609.68 |
+| Shift               | Zone         | Pressure (PSI) Mean | Pressure (PSI) Max | Pressure (PSI) Min | Temp (°C) Mean | Temp (°C) Max | Temp (°C) Min | Flow Rate (LPM) Mean | Flow Rate (LPM) Max | Flow Rate (LPM) Min |
+| :------------------ | :----------- | :-----------------: | :----------------: | :----------------: | :-------------: | :------------: | :------------: | :------------------: | :-----------------: | :-----------------: |
+| **Afternoon** | Zone_Central |       198.98       |       279.94       |       120.22       |      65.34      |     84.83     |     45.00     |       1021.07       |       1399.59       |       603.22       |
+|                     | Zone_East    |       203.74       |       279.89       |       121.25       |      64.95      |     84.99     |     45.08     |        997.97        |       1398.68       |       603.70       |
+|                     | Zone_North   |       201.21       |       278.92       |       120.03       |      64.48      |     84.89     |     45.14     |        994.38        |       1399.61       |       601.09       |
+|                     | Zone_South   |       201.08       |       279.72       |       120.22       |      65.12      |     84.99     |     45.05     |        991.43        |       1396.22       |       601.28       |
+|                     | Zone_West    |       199.05       |       279.61       |       120.35       |      65.02      |     84.77     |     45.07     |       1011.03       |       1397.89       |       608.80       |
+| **Morning**   | Zone_Central |       201.94       |       279.67       |       120.17       |      65.86      |     84.67     |     45.40     |       1005.77       |       1399.15       |       600.82       |
+|                     | Zone_East    |       199.25       |       279.95       |       120.16       |      64.69      |     84.75     |     45.56     |        984.88        |       1398.44       |       602.63       |
+|                     | Zone_North   |       202.48       |       279.85       |       121.29       |      65.87      |     84.67     |     45.24     |       1002.42       |       1393.85       |       601.80       |
+|                     | Zone_South   |       202.05       |       279.43       |       120.25       |      65.55      |     84.84     |     45.01     |        980.12        |       1392.80       |       603.17       |
+|                     | Zone_West    |       199.59       |       279.90       |       120.25       |      63.78      |     84.38     |     45.01     |        987.01        |       1399.76       |       600.23       |
+| **Night**     | Zone_Central |       198.81       |       279.92       |       120.43       |      64.76      |     84.77     |     45.05     |       1000.69       |       1395.04       |       600.69       |
+|                     | Zone_East    |       201.40       |       278.98       |       120.86       |      65.69      |     84.80     |     45.15     |       1001.89       |       1394.97       |       601.61       |
+|                     | Zone_North   |       203.07       |       279.96       |       120.70       |      64.03      |     85.00     |     45.03     |       1008.68       |       1398.37       |       600.01       |
+|                     | Zone_South   |       196.66       |       279.72       |       121.29       |      64.88      |     84.93     |     45.23     |       1002.54       |       1399.40       |       600.27       |
+|                     | Zone_West    |       192.42       |       277.87       |       120.29       |      64.30      |     84.81     |     45.05     |       1010.76       |       1399.38       |       609.68       |
 
 ---
 
@@ -92,6 +92,7 @@ The plot below compares the raw operational data with the cleaned pressure trend
 ### Prerequisites
 
 Ensure you have Python installed along with the following libraries:
+
 ```bash
 pip install numpy pandas matplotlib seaborn jupyter
 ```
